@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas1 JS - Farwis</title>
+  </head>
+
+  <!-- 
+  diketahui 
+  pegawai: Ridwan
+  jabatan: manager
+  status: menikah 
+  -->
+  <body>
+    <!-- mencetak data pegawai berbentuk tabel -->
+    <div id="output"></div>
+    <h2 style="text-align: center">TABEL DATA PEGAWAI - RINCIAN GAJI</h2>
+    <table
+      border="1"
+      align="center"
+      cellpadding="10"
+      cellspacing="0"
+      width="75%"
+    >
+      <!-- judul kolom menggunakan thead -->
+      <thead style="text-align: center" bgcolor="lightgray">
+        <tr>
+          <th>Nama Pegawai</th>
+          <th>Jabatan</th>
+          <th>Status</th>
+          <th>Gaji Pokok</th>
+          <th>Tunjangan Jabatan</th>
+          <th>BPJS</th>
+          <th>Tunjangan Keluarga</th>
+          <th>TOTAL</th>
+        </tr>
+      </thead>
+
+      <!-- datadata menggunakan tbody -->
+      <tbody style="text-align: center">
+        <tr>
+          <!-- pemanggilan berdasarkan id -->
+          <td id="namaPegawai"></td>
+          <td id="jabatanPegawai"></td>
+          <td id="statusPegawai"></td>
+          <td id="gajiPokok"></td>
+          <td id="tunjangJabatan"></td>
+          <td id="asuransi"></td>
+          <td id="tunjangKeluarga"></td>
+          <td id="total"></td>
+        </tr>
+      </tbody>
+
+      <!-- total gaji dengan menjumlahkan seluruh element gaji menggunakan tfoot -->
+      <tfoot align="center">
+        <tr>
+          <td id="gajiKeseluruhan" colspan="7">Total Gaji</td>
+          <td id="totalGaji"></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <script>
+      let nama = "Ridwan";
+      let jabatan = "Manager";
+      let status = "Menikah";
+
+      // gaji pokok (if)
+      if (jabatan == "Manager") {
+        gapok = 15000000;
+      } else if (jabatan == "Asisten Manager") {
+        gapok = 10000000;
+      } else if (jabatan == "Staff") {
+        gapok = 5000000;
+      } else {
+        gapok = 0;
+      }
+
+      // saya tidak tau ini dibutuhkan atau tidak dihapus juga tetap berfungsi
+      // if ((status == "Menikah")) {
+      //   gapok =   0;
+      // } else if ((status = "Lajang")) {
+      //   gapok = 0;
+      // }
+
+      // tunjangan jabatan (15%) dan bpjs (10%)
+      let tnjJabatan = gapok * 0.15;
+      let bpjs = gapok * 0.1;
+
+      // ternary
+      // jika berstatus menikah akan 20% dari gaji jika tidak berhasil 0
+      let tnjKeluarga = status == "Menikah" ? 0.2 * gapok : 0;
+
+      // jumlah total gaji
+      let totalGaji = gapok + tnjJabatan + bpjs + tnjKeluarga;
+
+      //menampilkan output data
+      document.getElementById("namaPegawai").innerHTML = nama;
+      document.getElementById("jabatanPegawai").innerHTML = jabatan;
+      document.getElementById("statusPegawai").innerHTML = status;
+      document.getElementById("gajiPokok").innerHTML = gapok;
+      document.getElementById("tunjangJabatan").innerHTML = tnjJabatan;
+      document.getElementById("asuransi").innerHTML = bpjs;
+      document.getElementById("tunjangKeluarga").innerHTML = tnjKeluarga;
+      document.getElementById("total").innerHTML = totalGaji;
+      document.getElementById("totalGaji").innerHTML = totalGaji;
+    </script>
+  </body>
+</html>
